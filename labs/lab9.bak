@@ -1,0 +1,23 @@
+#lang racket
+;Xavier Rodriguez
+;CS301
+;LAB9
+
+;Helper functions
+
+
+
+;Main
+
+(define (parse L)
+  (begin
+   
+    )
+
+
+;(error "not a letter" L)
+ 
+
+)
+
+(parse '((1+2)*(5+)) )

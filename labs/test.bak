@@ -1,0 +1,42 @@
+#lang racket
+
+
+;removes the first single element put in
+(define (remove L)
+    (cond ((null? L) '())
+          ((member (car L) '(1 #\2 #\3 #\4 #\5 #\6 #\7 #\8 #\9 #\+ #\*))
+            (cdr L))))
+
+;checks if the num is valid 
+(define (num? A)
+  (cond
+   ((member  (car A) '( #\( #\1 #\2 #\3 #\4 #\5 #\6 #\7 #\8 #\9 #\) ))
+    (remove A))
+   (car A))
+)
+
+(define (operator? A)
+  (cond
+   ((member A '(+ *))
+    (remove A))
+   (car A))
+)
+
+;This checks if the list that is getting
+;put in is a valid function
+(define (function? L)
+     (num? L)
+     (operator? L)
+     (num? L)
+  )
+
+
+(define (run List)
+  (define  copy (string->list List))
+    (cond
+      ((null? copy) #t)
+      ((function? copy))
+      )
+  
+)
+(run "1+2)")

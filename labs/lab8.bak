@@ -1,0 +1,38 @@
+#lang racket
+;Xavier Rodirguez
+;CS301
+;LAB 8
+
+;HELPERS
+; Realizes the truth function implies
+(define implies
+  (lambda (S1 S2)
+    (or (not S1) S2)))
+
+; Realizes the truth function  iff
+(define iff
+  (lambda (S1 S2)
+    (eq? S1 S2)))
+
+;Removes the duplicate variables 
+(define (remove-duplicates L)
+    (cond ( (null? L) '() )
+          ( (member (car L) (cdr L)) (remove-duplicates (cdr L)) )
+          (else
+           (cons (car L) (remove-duplicates (cdr L))))
+          ))
+;removes the and or not iff implies opps 
+(define (remove-opps L)
+    (cond ((null? L) '())
+          ( (member (car L) '(and or not iff implies))
+            (remove-opps (cdr L)))
+          (else (cons (car L) (remove-opps (cdr L))))))
+
+
+;MAIN
+(define (tautology? L)
+  (define cleanL(flatten L))
+  
+  
+  )
+(define tautology? '((p or (not p))))

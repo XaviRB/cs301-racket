@@ -1,0 +1,23 @@
+#lang racket
+
+(define (savedL A L)
+  (cond ( (null? S) #f)          ; the list is empty; has no
+                                  ; members, a cannot be a member
+        ( (eq? a (car S)) L)    ; a is equal to the first element
+                                   ; and is therefore a member
+        (else
+         ( )     ; ask the same question of the 
+         )))
+
+(define (Reflexive? L S)
+  (cond
+    ((and (null? L) (null? S)) #t)
+    ;((and (not (null? L)) (null? S)) #f) 
+    ;((and (not (null? S)) (null? L)) #f)
+    ((savedL 
+    (else (if (equal? (car (car L)) (car S))
+              (Reflexive? (cdr L) (cdr S)) #f))))
+
+
+
+(Reflexive? '((a a) (b b) (a b) (b a)) '(a b))

@@ -1,0 +1,70 @@
+#lang racket
+;CSCI 301
+;Xavier Rodriguez
+
+(define Number-Of (lambda(A L)
+  (cond((null? L)0 )
+       ((eq? A (car L))
+        (+ 1 (Number-Of A (cdr L))))
+  (else (Number-Of A (cdr L))))))
+
+(define Max-of (lambda(A L1 L2)
+  (let ((x (Number-Of A L1)) (y (Number-Of A L2)))
+    (if ( > x y) x y)
+    )))
+ 
+(define Min-of (lambda(A L1 L2)
+  (let ((x (Number-Of A L1)) (y (Number-Of A L2)))
+    (if ( < x y) x y)
+    )))
+
+(define Bag-sum (lambda (L1 L2)
+  (display(append L1 L2))))
+
+
+(define (member A L)
+  (cond ((null? L) #f)
+        ((equal? A (car L)) #t)
+        (else (member A (cdr L)))))
+
+(define (remove item list)
+  (cond
+    ((null? list) '())
+     ((eq? item (car list)) (cdr list))
+     (else
+      (cons (car list) (remove item (cdr list))))))
+
+; could not get it runnning the list gave back the first half of max elements but it wouldnt return the appended list.               
+(define Bag-union (lambda (L1 L2)
+   
+  (cond
+    ((null? L1) L2)
+     (member (car L1) make-list) (Bag-union (cdr L1) make-list)
+     (make-list (Max-of (car L1) L1 L2))
+     
+     (else
+          (cons make-list L2))
+         )))
+
+(define Bag-intersect (lambda (L1 L2)
+  (cond
+    ((null? L1) L2)
+     (member (car L1) L2)
+     (make-list (Min-of (car L1) L1 L2))
+     
+     (else
+          (cons make-list L2))
+         )))
+
+
+
+         
+         
+                    
+
+;(Number-Of "a" '("H" "a" "l" "l" "o" "w" "e" "e" "n"))
+;(Max-of "a" '("H" "a" "l" "l" "o" "w" "e" "e" "n") '("s" "c" "a" "r" "y"))
+;(Min-of "l" '("H" "a" "l" "l" "o" "w" "e" "e" "n") '("s" "c" "a" "r" "y"))
+;(Bag-sum '("a" "a" "a" "a" "b" "b" "b") '("a" "a" "a" "b" "b" "b" "b"))
+(Bag-union  '("a" "a" "a" "a" "b" "b" "b") '("a" "a" "a" "b" "b" "b" "b"))
+;(Bag-union  '("a" "a" "a" "a" "b" "b" "b") '("a" "a" "a" "b" "b" "b" "b"))
